@@ -1,0 +1,34 @@
+{
+  "name": "elevenlabs-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for ElevenLabs Text-to-Speech API",
+  "type": "module",
+  "bin": {
+    "elevenlabs-mcp-server": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "client": "node build/client.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mcp",
+    "elevenlabs",
+    "tts",
+    "text-to-speech"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "dotenv": "^17.4.2",
+    "openai": "^6.34.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.2"
+  }
+}

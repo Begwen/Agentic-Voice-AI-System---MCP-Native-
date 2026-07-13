@@ -1,0 +1,277 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="mULZMNhipgKH5_k8aaER" name="Page-1">
+    <mxGraphModel dx="1845" dy="910" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#12131e;strokeColor=none;pointerEvents=0;" value="" vertex="1">
+          <mxGeometry height="1220" width="1900" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#d0d4f0;fontSize=22;fontStyle=1;strokeColor=none;fillColor=none;" value="ElevenLabs Voice-to-Voice Agent" vertex="1">
+          <mxGeometry height="42" width="1860" x="20" y="16" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#6870a0;fontSize=12;strokeColor=none;fillColor=none;" value="A prompt-centric MCP implementation — Tools (actions) + Prompts (behavioral context) + Resources (live data) — powering a real-time voice-to-voice conversation agent" vertex="1">
+          <mxGeometry height="26" width="1860" x="20" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="div1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#22244a;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="93" as="sourcePoint" />
+            <mxPoint x="1880" y="93" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#161727;strokeColor=#252848;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="640" width="375" x="20" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c_head" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#b8bcdc;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;" value="client.ts — CLI Client" vertex="1">
+          <mxGeometry height="28" width="375" x="20" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="c_subdesc" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#5860a0;fontSize=10;strokeColor=none;fillColor=none;whiteSpace=wrap;" value="Spawns the MCP server as a child process over stdio. Connects to Claude or GPT for reasoning. Routes every LLM tool call through the MCP server and returns results." vertex="1">
+          <mxGeometry height="44" width="359" x="28" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="c_repl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f1020;strokeColor=#222440;fontSize=10;fontColor=#9098c8;align=left;verticalAlign=top;" value="&lt;b&gt;Interactive REPL&lt;/b&gt;&lt;br&gt;&lt;br&gt;You:  (any text)           regular chat + tool use&lt;br&gt;You:  /prompts             list all 4 MCP prompts&lt;br&gt;You:  /prompt name k=&amp;quot;v&amp;quot;   invoke prompt + chat&lt;br&gt;You:  /voice               enter voice loop mode&lt;br&gt;You:  exit                 quit the session" vertex="1">
+          <mxGeometry height="110" width="355" x="30" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="c_voice" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f1020;strokeColor=#222440;fontSize=10;fontColor=#9098c8;align=left;verticalAlign=top;" value="&lt;b&gt;Voice Loop  (/voice)&lt;/b&gt;&lt;br&gt;&lt;br&gt;1.  Verify sox is installed  (which rec)&lt;br&gt;2.  Press ENTER  to start recording&lt;br&gt;3.  sox rec  captures mic  -&gt;  temp WAV file&lt;br&gt;4.  Press ENTER  to stop recording&lt;br&gt;5.  Calls  speech_to_text  tool with file path&lt;br&gt;6.  ElevenLabs STT returns transcript string&lt;br&gt;7.  Sends transcript to LLM + VOICE_SYSTEM&lt;br&gt;    (VOICE_SYSTEM forces LLM to call TTS)&lt;br&gt;8.  Parses  &amp;quot;Audio saved to: /path.mp3&amp;quot;&lt;br&gt;9.  Auto-plays MP3 via afplay / mpg123&lt;br&gt;10. Loop back to step 2" vertex="1">
+          <mxGeometry height="195" width="355" x="30" y="302" as="geometry" />
+        </mxCell>
+        <mxCell id="c_pinvoke" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f1020;strokeColor=#222440;fontSize=10;fontColor=#9098c8;align=left;verticalAlign=top;" value="&lt;b&gt;Prompt Invocation  (/prompt)&lt;/b&gt;&lt;br&gt;&lt;br&gt;1.  Parse  name  and  key=&amp;quot;value&amp;quot;  arg pairs&lt;br&gt;2.  Call  mcpClient.getPrompt({ name, args })&lt;br&gt;3.  Receive  messages[]  from the MCP server&lt;br&gt;    (prompt callbacks run server-side on invoke)&lt;br&gt;4.  Inject messages into conversation history&lt;br&gt;5.  LLM generates first response, calls tools&lt;br&gt;6.  Auto-play any MP3 the LLM generates" vertex="1">
+          <mxGeometry height="135" width="355" x="30" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="c_llmprovider" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0d0e1e;strokeColor=#222440;fontSize=10;fontColor=#5058a0;align=center;verticalAlign=middle;" value="LLM_PROVIDER=anthropic  -&gt;  claude-sonnet-4-20250514&lt;br&gt;LLM_PROVIDER=openai     -&gt;  gpt-4o" vertex="1">
+          <mxGeometry height="46" width="355" x="30" y="648" as="geometry" />
+        </mxCell>
+        <mxCell id="mcp_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#12131e;strokeColor=#22244a;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="640" width="1055" x="410" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="mcp_head" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#a0a4c8;fontSize=12;fontStyle=1;strokeColor=none;fillColor=none;" value="index.ts — MCP Server   |   All three MCP primitives   |   stdio transport   |   server.registerTool / registerPrompt / resource" vertex="1">
+          <mxGeometry height="26" width="1055" x="410" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="tl_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#101820;strokeColor=#1a3050;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="596" width="320" x="422" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="tl_head" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#5890c8;fontSize=11;fontStyle=1;strokeColor=none;fillColor=none;" value="TOOLS  (7)&lt;br&gt;Imperative actions — the LLM decides&lt;br&gt;when and how to invoke each one" vertex="1">
+          <mxGeometry height="52" width="320" x="422" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="t1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#091420;strokeColor=#1a3050;fontSize=10;fontColor=#7aaed8;align=left;verticalAlign=top;" value="&lt;b&gt;list_voices&lt;/b&gt;&lt;br&gt;GET /v1/voices&lt;br&gt;All voices: IDs, names, categories, labels" vertex="1">
+          <mxGeometry height="52" width="298" x="433" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#091420;strokeColor=#1a3050;fontSize=10;fontColor=#7aaed8;align=left;verticalAlign=top;" value="&lt;b&gt;get_voice&lt;/b&gt;&lt;br&gt;GET /v1/voices/{id}&lt;br&gt;Full details for a single voice by ID" vertex="1">
+          <mxGeometry height="52" width="298" x="433" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#091420;strokeColor=#1a3050;fontSize=10;fontColor=#7aaed8;align=left;verticalAlign=top;" value="&lt;b&gt;list_models&lt;/b&gt;&lt;br&gt;GET /v1/models&lt;br&gt;TTS/STT models, capabilities, languages" vertex="1">
+          <mxGeometry height="52" width="298" x="433" y="314" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#091420;strokeColor=#24487a;fontSize=10;fontColor=#8abce8;align=left;verticalAlign=top;" value="&lt;b&gt;text_to_speech&lt;/b&gt;&lt;br&gt;POST /v1/text-to-speech/{voice_id}&lt;br&gt;text  -&gt;  MP3 file saved to disk&lt;br&gt;Returns: &amp;quot;Audio saved to: /path.mp3&amp;quot;" vertex="1">
+          <mxGeometry height="65" width="298" x="433" y="372" as="geometry" />
+        </mxCell>
+        <mxCell id="t5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#091420;strokeColor=#24487a;fontSize=10;fontColor=#8abce8;align=left;verticalAlign=top;" value="&lt;b&gt;speech_to_text&lt;/b&gt;&lt;br&gt;POST /v1/speech-to-text&lt;br&gt;Audio file path  -&gt;  transcript string&lt;br&gt;Model: scribe_v1  |  multipart/form-data" vertex="1">
+          <mxGeometry height="65" width="298" x="433" y="443" as="geometry" />
+        </mxCell>
+        <mxCell id="t6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#091420;strokeColor=#1a3050;fontSize=10;fontColor=#7aaed8;align=left;verticalAlign=top;" value="&lt;b&gt;get_user_info&lt;/b&gt;&lt;br&gt;GET /v1/user&lt;br&gt;Account info, character quota and usage" vertex="1">
+          <mxGeometry height="52" width="298" x="433" y="514" as="geometry" />
+        </mxCell>
+        <mxCell id="t7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#091420;strokeColor=#1a3050;fontSize=10;fontColor=#7aaed8;align=left;verticalAlign=top;" value="&lt;b&gt;get_history&lt;/b&gt;&lt;br&gt;GET /v1/history&lt;br&gt;Paginated TTS generation history" vertex="1">
+          <mxGeometry height="52" width="298" x="433" y="572" as="geometry" />
+        </mxCell>
+        <mxCell id="t_impl" parent="1" style="text;html=1;align=center;fontColor=#28406a;fontSize=9;strokeColor=none;fillColor=none;" value="registerTool(name, { description, inputSchema }, handler)" vertex="1">
+          <mxGeometry height="30" width="320" x="422" y="632" as="geometry" />
+        </mxCell>
+        <mxCell id="t_impl2" parent="1" style="text;html=1;align=center;fontColor=#28406a;fontSize=9;strokeColor=none;fillColor=none;" value="Uses zod schemas for input validation" vertex="1">
+          <mxGeometry height="20" width="320" x="422" y="654" as="geometry" />
+        </mxCell>
+        <mxCell id="pr_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0e1c12;strokeColor=#1e4030;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="596" width="398" x="756" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="pr_tag" parent="1" style="text;html=1;align=center;fontColor=#2e6040;fontSize=9;fontStyle=1;strokeColor=none;fillColor=none;" value="THE CORE DIFFERENTIATOR" vertex="1">
+          <mxGeometry height="16" width="398" x="756" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="pr_head" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#60c880;fontSize=11;fontStyle=1;strokeColor=none;fillColor=none;" value="PROMPTS  (4)&lt;br&gt;Declarative behavioral context — define HOW&lt;br&gt;the agent thinks and speaks per session" vertex="1">
+          <mxGeometry height="50" width="398" x="756" y="158" as="geometry" />
+        </mxCell>
+        <mxCell id="pr_why" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#60a070;align=left;verticalAlign=top;" value="Unlike tools (imperative: do X once), prompts are declarative. They inject a full conversation context that shapes the LLM for an entire session. Callbacks run at invocation time — they can call live APIs and embed the results in the instructions." vertex="1">
+          <mxGeometry height="58" width="376" x="767" y="212" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#80cc98;align=left;verticalAlign=top;" value="&lt;b&gt;voice_agent_persona&lt;/b&gt;&lt;br&gt;Args: name, personality, [voice_style]&lt;br&gt;&lt;br&gt;Callback fetches the live voice list from&lt;br&gt;ElevenLabs at invocation time and embeds it&lt;br&gt;in a system message. Defines agent identity,&lt;br&gt;voice selection rules, TTS-every-reply mandate." vertex="1">
+          <mxGeometry height="90" width="376" x="767" y="278" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#80cc98;align=left;verticalAlign=top;" value="&lt;b&gt;start_voice_session&lt;/b&gt;&lt;br&gt;Args: [topic], [language], [voice_id]&lt;br&gt;&lt;br&gt;Sets session-level behavioral rules: always&lt;br&gt;call text_to_speech, keep responses brief&lt;br&gt;and spoken-language natural, pick one voice&lt;br&gt;and use it consistently throughout." vertex="1">
+          <mxGeometry height="90" width="376" x="767" y="374" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#80cc98;align=left;verticalAlign=top;" value="&lt;b&gt;find_voice_for_role&lt;/b&gt;&lt;br&gt;Args: role&lt;br&gt;&lt;br&gt;Instructs the LLM to call list_voices, reason&lt;br&gt;about labels vs the role, pick top 3 matches,&lt;br&gt;generate an audio sample for each, and return&lt;br&gt;a final recommended voice_id with justification." vertex="1">
+          <mxGeometry height="90" width="376" x="767" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#80cc98;align=left;verticalAlign=top;" value="&lt;b&gt;voice_showcase&lt;/b&gt;&lt;br&gt;Args: phrase, [count]&lt;br&gt;&lt;br&gt;Renders the same phrase across N diverse&lt;br&gt;voices — different genders, accents, styles.&lt;br&gt;One MP3 per voice. Returns a summary table&lt;br&gt;of all voice IDs and their output file paths." vertex="1">
+          <mxGeometry height="90" width="376" x="767" y="566" as="geometry" />
+        </mxCell>
+        <mxCell id="pr_impl" parent="1" style="text;html=1;align=center;fontColor=#1e4828;fontSize=9;strokeColor=none;fillColor=none;" value="registerPrompt(name, { description, argsSchema }, handler)" vertex="1">
+          <mxGeometry height="30" width="398" x="756" y="662" as="geometry" />
+        </mxCell>
+        <mxCell id="pr_impl2" parent="1" style="text;html=1;align=center;fontColor=#1e4828;fontSize=9;strokeColor=none;fillColor=none;" value="Handler returns  { messages: [{ role, content }] }  injected into LLM history" vertex="1">
+          <mxGeometry height="18" width="398" x="756" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="rs_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#14102a;strokeColor=#2a1e55;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="596" width="285" x="1168" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="rs_head" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#9080c8;fontSize=11;fontStyle=1;strokeColor=none;fillColor=none;" value="RESOURCES  (2)&lt;br&gt;Live data context — the LLM reads&lt;br&gt;these as passive reference material" vertex="1">
+          <mxGeometry height="52" width="285" x="1168" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="rs_why" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0c0820;strokeColor=#2a1e55;fontSize=10;fontColor=#7060a8;align=left;verticalAlign=top;" value="Resources expose live API data the LLM reads as context without a tool call. Discoverable in MCP clients that support resource subscriptions (Claude Desktop, Claude Code). Fetched fresh on every read request." vertex="1">
+          <mxGeometry height="78" width="265" x="1178" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0c0820;strokeColor=#2a1e55;fontSize=10;fontColor=#a898d8;align=left;verticalAlign=top;" value="&lt;b&gt;elevenlabs://voices&lt;/b&gt;&lt;br&gt;GET /v1/voices&lt;br&gt;&lt;br&gt;Live list of all voices: IDs,&lt;br&gt;categories, labels, preview URLs.&lt;br&gt;&lt;br&gt;Read before calling&lt;br&gt;text_to_speech to choose&lt;br&gt;the optimal voice." vertex="1">
+          <mxGeometry height="150" width="265" x="1178" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0c0820;strokeColor=#2a1e55;fontSize=10;fontColor=#a898d8;align=left;verticalAlign=top;" value="&lt;b&gt;elevenlabs://models&lt;/b&gt;&lt;br&gt;GET /v1/models&lt;br&gt;&lt;br&gt;All TTS and STT models with&lt;br&gt;capabilities and supported&lt;br&gt;languages.&lt;br&gt;&lt;br&gt;Read to pick the best model&lt;br&gt;for the use case or language." vertex="1">
+          <mxGeometry height="150" width="265" x="1178" y="444" as="geometry" />
+        </mxCell>
+        <mxCell id="rs_impl" parent="1" style="text;html=1;align=center;fontColor=#2a1e50;fontSize=9;strokeColor=none;fillColor=none;" value="resource(name, uri, { description, mimeType }, handler)" vertex="1">
+          <mxGeometry height="28" width="285" x="1168" y="648" as="geometry" />
+        </mxCell>
+        <mxCell id="rs_impl2" parent="1" style="text;html=1;align=center;fontColor=#2a1e50;fontSize=9;strokeColor=none;fillColor=none;" value="handler returns  { contents: [{ uri, mimeType, text }] }" vertex="1">
+          <mxGeometry height="18" width="285" x="1168" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="llm_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#141430;strokeColor=#282870;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="310" width="400" x="1480" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="llm_head" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#9090d0;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;" value="LLM API" vertex="1">
+          <mxGeometry height="26" width="400" x="1480" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="llm_body" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0e0e22;strokeColor=#282870;fontSize=10;fontColor=#8888c8;align=left;verticalAlign=top;" value="&lt;b&gt;Anthropic Claude&lt;/b&gt;&lt;br&gt;Model: claude-sonnet-4-20250514&lt;br&gt;Tool format: tool_use content blocks&lt;br&gt;&lt;br&gt;&lt;b&gt;OpenAI GPT&lt;/b&gt;&lt;br&gt;Model: gpt-4o&lt;br&gt;Tool format: function calling (tool_calls)&lt;br&gt;&lt;br&gt;client.ts converts MCP tool definitions to&lt;br&gt;each provider&#39;s native format on the fly.&lt;br&gt;&lt;br&gt;&lt;b&gt;VOICE_SYSTEM override  (voice mode)&lt;/b&gt;&lt;br&gt;Replaces default system message. Forces LLM&lt;br&gt;to call text_to_speech on every response.&lt;br&gt;Keeps replies to 2-3 spoken sentences." vertex="1">
+          <mxGeometry height="264" width="380" x="1490" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="el_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e1015;strokeColor=#482030;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="310" width="400" x="1480" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="el_head" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontColor=#c09898;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;" value="ElevenLabs REST API" vertex="1">
+          <mxGeometry height="26" width="400" x="1480" y="436" as="geometry" />
+        </mxCell>
+        <mxCell id="el_body" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#140c10;strokeColor=#482030;fontSize=10;fontColor=#b08888;align=left;verticalAlign=top;" value="Base URL: api.elevenlabs.io/v1&lt;br&gt;Auth header: xi-api-key&lt;br&gt;&lt;br&gt;GET   /voices             list_voices tool + voices resource&lt;br&gt;GET   /voices/{id}        get_voice tool&lt;br&gt;GET   /models             list_models tool + models resource&lt;br&gt;&lt;br&gt;POST  /text-to-speech     text_to_speech tool&lt;br&gt;POST  /speech-to-text     speech_to_text tool  (scribe_v1)&lt;br&gt;      Content: multipart/form-data&lt;br&gt;&lt;br&gt;GET   /user               get_user_info tool&lt;br&gt;GET   /history            get_history tool&lt;br&gt;&lt;br&gt;Wrapped in: elevenlabs-client.ts" vertex="1">
+          <mxGeometry height="264" width="380" x="1490" y="466" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_c_llm" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#303068;strokeWidth=1;fontColor=#5858a8;fontSize=9;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="llm_outer" value="user message + tool definitions">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="207" y="80" />
+              <mxPoint x="1680" y="80" />
+            </Array>
+            <mxPoint x="207" y="178" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr_llm_c" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#303068;strokeWidth=1;fontColor=#5858a8;fontSize=9;entryX=0.55;entryY=0;entryDx=0;entryDy=0;" target="c_outer" value="response + tool_use blocks">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1480" y="80" />
+              <mxPoint x="207" y="80" />
+            </Array>
+            <mxPoint x="1480" y="178" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr_c_mcp" edge="1" parent="1" source="c_outer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#383868;strokeWidth=1;fontColor=#5860a0;fontSize=9;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.6;entryDx=0;entryDy=0;" target="mcp_outer" value="tool calls (JSON-RPC)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_mcp_c" edge="1" parent="1" source="mcp_outer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#383868;strokeWidth=1;fontColor=#5860a0;fontSize=9;exitX=0;exitY=0.72;exitDx=0;exitDy=0;entryX=1;entryY=0.72;entryDx=0;entryDy=0;" target="c_outer" value="tool results">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_stdio_label" parent="1" style="text;html=1;align=center;fontColor=#303060;fontSize=9;strokeColor=none;fillColor=none;" value="MCP stdio transport  (child process pipes)" vertex="1">
+          <mxGeometry height="18" width="375" x="410" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_mcp_el" edge="1" parent="1" source="mcp_outer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#583040;strokeWidth=1;fontColor=#806070;fontSize=9;exitX=1;exitY=0.72;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="el_outer" value="REST API calls">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr_el_mcp" edge="1" parent="1" source="el_outer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#583040;strokeWidth=1;fontColor=#806070;fontSize=9;exitX=0;exitY=0.62;exitDx=0;exitDy=0;entryX=1;entryY=0.82;entryDx=0;entryDy=0;" target="mcp_outer" value="audio bytes + JSON">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vp_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#12131e;strokeColor=#22244a;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="152" width="1860" x="20" y="758" as="geometry" />
+        </mxCell>
+        <mxCell id="vp_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontColor=#6870a0;fontSize=11;fontStyle=1;strokeColor=none;fillColor=none;" value="Voice-to-Voice Pipeline  (one full turn)" vertex="1">
+          <mxGeometry height="22" width="400" x="30" y="763" as="geometry" />
+        </mxCell>
+        <mxCell id="vp1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#161727;strokeColor=#252848;fontSize=10;fontColor=#9098c8;align=center;verticalAlign=middle;" value="&lt;b&gt;Microphone&lt;/b&gt;&lt;br&gt;user speaks" vertex="1">
+          <mxGeometry height="52" width="118" x="30" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#161727;strokeColor=#252848;fontSize=10;fontColor=#9098c8;align=center;verticalAlign=middle;" value="&lt;b&gt;sox rec&lt;/b&gt;&lt;br&gt;16kHz mono WAV&lt;br&gt;temp file" vertex="1">
+          <mxGeometry height="52" width="118" x="188" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#101820;strokeColor=#1a3050;fontSize=10;fontColor=#7aaed8;align=center;verticalAlign=middle;" value="&lt;b&gt;speech_to_text&lt;/b&gt;&lt;br&gt;MCP tool call&lt;br&gt;file -&gt; transcript" vertex="1">
+          <mxGeometry height="52" width="145" x="346" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e1015;strokeColor=#482030;fontSize=10;fontColor=#c09898;align=center;verticalAlign=middle;" value="&lt;b&gt;ElevenLabs STT&lt;/b&gt;&lt;br&gt;scribe_v1 model&lt;br&gt;returns text" vertex="1">
+          <mxGeometry height="52" width="145" x="531" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#141430;strokeColor=#282870;fontSize=10;fontColor=#9090d0;align=center;verticalAlign=middle;" value="&lt;b&gt;LLM reasoning&lt;/b&gt;&lt;br&gt;VOICE_SYSTEM active&lt;br&gt;must call TTS" vertex="1">
+          <mxGeometry height="52" width="145" x="726" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#101820;strokeColor=#1a3050;fontSize=10;fontColor=#7aaed8;align=center;verticalAlign=middle;" value="&lt;b&gt;text_to_speech&lt;/b&gt;&lt;br&gt;MCP tool call&lt;br&gt;text -&gt; MP3" vertex="1">
+          <mxGeometry height="52" width="145" x="921" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e1015;strokeColor=#482030;fontSize=10;fontColor=#c09898;align=center;verticalAlign=middle;" value="&lt;b&gt;ElevenLabs TTS&lt;/b&gt;&lt;br&gt;eleven_multilingual_v2&lt;br&gt;returns audio bytes" vertex="1">
+          <mxGeometry height="52" width="158" x="1116" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#161727;strokeColor=#252848;fontSize=10;fontColor=#9098c8;align=center;verticalAlign=middle;" value="&lt;b&gt;MP3 file&lt;/b&gt;&lt;br&gt;saved to disk&lt;br&gt;path returned" vertex="1">
+          <mxGeometry height="52" width="118" x="1324" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#161727;strokeColor=#252848;fontSize=10;fontColor=#9098c8;align=center;verticalAlign=middle;" value="&lt;b&gt;afplay / mpg123&lt;/b&gt;&lt;br&gt;auto-play MP3&lt;br&gt;macOS / Linux" vertex="1">
+          <mxGeometry height="52" width="145" x="1492" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vp10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#161727;strokeColor=#252848;fontSize=10;fontColor=#9098c8;align=center;verticalAlign=middle;" value="&lt;b&gt;Speakers&lt;/b&gt;&lt;br&gt;user hears&lt;br&gt;AI response" vertex="1">
+          <mxGeometry height="52" width="118" x="1687" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa1" edge="1" parent="1" source="vp1" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa2" edge="1" parent="1" source="vp2" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa3" edge="1" parent="1" source="vp3" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa4" edge="1" parent="1" source="vp4" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa5" edge="1" parent="1" source="vp5" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa6" edge="1" parent="1" source="vp6" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa7" edge="1" parent="1" source="vp7" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa8" edge="1" parent="1" source="vp8" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vpa9" edge="1" parent="1" source="vp9" style="endArrow=block;endFill=1;html=1;strokeColor=#383858;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vp10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vp_loop" parent="1" style="text;html=1;align=right;fontColor=#28304a;fontSize=9;strokeColor=none;fillColor=none;" value="&lt;- repeat each turn" vertex="1">
+          <mxGeometry height="18" width="230" x="1640" y="851" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_outer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0e1c12;strokeColor=#1e4030;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="270" width="1860" x="20" y="926" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontColor=#50a068;fontSize=13;fontStyle=1;strokeColor=none;fillColor=none;" value="Why This Is Prompt-Centric MCP" vertex="1">
+          <mxGeometry height="26" width="500" x="30" y="932" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#70a880;align=left;verticalAlign=top;" value="&lt;b&gt;All Three Primitives&lt;/b&gt;&lt;br&gt;&lt;br&gt;Most MCP servers expose only Tools.&lt;br&gt;This project uses all three primitives&lt;br&gt;as a cohesive system:&lt;br&gt;&lt;br&gt;Tools    =  what the agent CAN do&lt;br&gt;Prompts  =  how the agent THINKS&lt;br&gt;Resources  =  what the agent KNOWS&lt;br&gt;&lt;br&gt;Each primitive has a distinct role and&lt;br&gt;complements the others." vertex="1">
+          <mxGeometry height="218" width="290" x="30" y="962" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#70a880;align=left;verticalAlign=top;" value="&lt;b&gt;Dynamic Prompt Context&lt;/b&gt;&lt;br&gt;&lt;br&gt;Prompt callbacks run at invocation&lt;br&gt;time, not at server startup.&lt;br&gt;&lt;br&gt;voice_agent_persona fetches the live&lt;br&gt;ElevenLabs voice list and embeds it&lt;br&gt;directly in the instructions. The agent&lt;br&gt;identity is grounded in real-time API&lt;br&gt;data, not hardcoded strings. Change&lt;br&gt;your voices, the prompt adapts." vertex="1">
+          <mxGeometry height="218" width="290" x="336" y="962" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#70a880;align=left;verticalAlign=top;" value="&lt;b&gt;Session-Level Rules&lt;/b&gt;&lt;br&gt;&lt;br&gt;start_voice_session does not ask the&lt;br&gt;LLM to call one tool. It sets behavioral&lt;br&gt;rules for an entire conversation: always&lt;br&gt;speak via TTS, keep responses brief and&lt;br&gt;spoken-natural, lock to one voice.&lt;br&gt;&lt;br&gt;This is the difference between a&lt;br&gt;tool-calling chatbot and a coherent,&lt;br&gt;consistent voice agent." vertex="1">
+          <mxGeometry height="218" width="290" x="642" y="962" as="geometry" />
+        </mxCell>
+        <mxCell id="pc4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#70a880;align=left;verticalAlign=top;" value="&lt;b&gt;Workflows as Prompts&lt;/b&gt;&lt;br&gt;&lt;br&gt;find_voice_for_role and voice_showcase&lt;br&gt;are multi-step workflows encoded as&lt;br&gt;prompts, not as hardcoded client logic.&lt;br&gt;&lt;br&gt;The LLM reads the instructions and&lt;br&gt;orchestrates the tool calls itself.&lt;br&gt;Adding a new workflow = one new prompt.&lt;br&gt;No changes to client.ts or index.ts&lt;br&gt;business logic needed." vertex="1">
+          <mxGeometry height="218" width="290" x="948" y="962" as="geometry" />
+        </mxCell>
+        <mxCell id="pc5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#70a880;align=left;verticalAlign=top;" value="&lt;b&gt;LLM-Agnostic Server&lt;/b&gt;&lt;br&gt;&lt;br&gt;index.ts has zero knowledge of which&lt;br&gt;LLM the client is using. All three&lt;br&gt;primitives are defined once in MCP&lt;br&gt;format.&lt;br&gt;&lt;br&gt;client.ts translates to Anthropic&lt;br&gt;tool_use or OpenAI function calling.&lt;br&gt;The same server works with any&lt;br&gt;MCP-aware client without changes." vertex="1">
+          <mxGeometry height="218" width="290" x="1254" y="962" as="geometry" />
+        </mxCell>
+        <mxCell id="pc6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#081208;strokeColor=#1e4030;fontSize=10;fontColor=#70a880;align=left;verticalAlign=top;" value="&lt;b&gt;Resources as Living Context&lt;/b&gt;&lt;br&gt;&lt;br&gt;elevenlabs://voices and&lt;br&gt;elevenlabs://models are fetched fresh&lt;br&gt;on every read request.&lt;br&gt;&lt;br&gt;MCP clients that support resource&lt;br&gt;subscriptions (Claude Desktop, Claude&lt;br&gt;Code) get automatic context refresh.&lt;br&gt;The agent always sees current voice&lt;br&gt;availability without a tool call." vertex="1">
+          <mxGeometry height="218" width="305" x="1560" y="962" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
